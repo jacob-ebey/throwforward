@@ -28,3 +28,4 @@ jobs:
           workingDirectory: site
           directory: dist
           wranglerVersion: "3.60.3"
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
