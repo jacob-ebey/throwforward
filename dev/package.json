@@ -1,0 +1,39 @@
+{
+	"name": "throwforward-dev",
+	"version": "0.0.0",
+	"type": "module",
+	"description": "The throwforward development tools.",
+	"keywords": [
+		"throwforward",
+		"cloudflare",
+		"workers",
+		"durable-objects",
+		"vite"
+	],
+	"author": "Jacob Ebey <jacob.ebey@live.com>",
+	"license": "ISC",
+	"files": ["dist", "vite-types.d.ts"],
+	"exports": {
+		"./vite-types": "./vite-types.d.ts",
+		"./vite": {
+			"types": "./dist/vite.d.ts",
+			"import": "./dist/vite.js"
+		}
+	},
+	"scripts": {
+		"dev": "tsup --watch",
+		"build": "tsup --clean"
+	},
+	"dependencies": {
+		"@hono/node-server": "1.11.3",
+		"@jacob-ebey/cf-vite-plugin": "0.0.0-pre.6",
+		"@types/ws": "8.5.10",
+		"vite": "6.0.0-alpha.18",
+		"ws": "8.17.0"
+	},
+	"devDependencies": {
+		"@types/node": "20.14.2",
+		"tsup": "8.1.0",
+		"typescript": "5.4.5"
+	}
+}

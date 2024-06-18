@@ -1,0 +1,14 @@
+compatibility_date = "2024-05-28"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "DB"
+database_id = "YOUR DB ID"
+
+[[durable_objects.bindings]]
+name = "RATE_LIMITER"
+class_name = "RateLimiter"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["RateLimiter"]

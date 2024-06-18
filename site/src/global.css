@@ -1,0 +1,389 @@
+/* @import "7.css/dist/7.css"; */
+@import "7.css/dist/gui/global.css";
+@import "7.css/dist/gui/button.css";
+@import "7.css/dist/gui/collapse.css";
+@import "7.css/dist/gui/groupbox.css";
+@import "7.css/dist/gui/scrollbar.css";
+@import "7.css/dist/gui/searchbox.css";
+@import "7.css/dist/gui/spinner.css";
+@import "7.css/dist/gui/tabs.css";
+@import "7.css/dist/gui/textbox.css";
+@import "7.css/dist/gui/treeview.css";
+@import "7.css/dist/gui/typography.css";
+@import "7.css/dist/gui/window.css";
+
+@import "highlight.js/styles/default.css";
+
+/* 7.css extensions */
+.button {
+  background: linear-gradient(180deg, #f2f2f2 45%, #ebebeb 0, #cfcfcf);
+  border: 1px solid #8e8f8f;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px #fffc;
+  box-sizing: border-box;
+  color: #222;
+  font: 9pt Segoe UI, SegoeUI, Noto Sans, sans-serif;
+  min-height: 23px;
+  min-width: 75px;
+  padding: 0 12px;
+  position: relative;
+  text-align: center;
+  z-index: 0;
+  display: inline-block;
+}
+.button:before {
+  background: linear-gradient(180deg, #eaf6fd 45%, #bee6fd 0, #a7d9f5);
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px #fffc;
+  content: "";
+  height: 100%;
+  left: 0;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity 0.3s;
+  width: 100%;
+  z-index: -1;
+}
+.button:after {
+  background: linear-gradient(
+    180deg,
+    #e5f4fc,
+    #c4e5f6 30% 50%,
+    #98d1ef 50%,
+    #68b3db
+  );
+  border-radius: 2px;
+  box-shadow: inset 1px 1px 0 #0003, inset -1px 1px 0 #0001;
+  content: "";
+  height: 100%;
+  left: 0;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity 0.3s;
+  width: 100%;
+  z-index: -1;
+}
+.button:disabled {
+  background: #f4f4f4;
+  border-color: #aeb2b5;
+  color: #838383;
+}
+.button:not(:disabled):hover {
+  border-color: #3c7fb1;
+  transition: border-color 0.3s;
+}
+.button:not(:disabled):hover:before {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+.button:not(:disabled):not(:hover) {
+  border-color: #8e8f8f;
+  transition: border-color 1s linear;
+}
+.button:not(:disabled):not(:hover):before {
+  opacity: 0;
+  transition: opacity 1s linear;
+}
+.button:not(:disabled).active,
+.button:not(:disabled):active {
+  border-color: #6d91ab;
+  transition: border-color 0.3s;
+}
+.button:not(:disabled).active:after,
+.button:not(:disabled):active:after {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+.button:focus-visible {
+  box-shadow: inset 0 0 0 2px #98d1ef;
+  outline: 1px dotted #000;
+  outline-offset: -4px;
+}
+.button.focused {
+  box-shadow: inset 0 0 0 2px #98d1ef;
+  outline: 1px dotted #000;
+  outline-offset: -4px;
+}
+.button.default,
+.button.focused,
+.button:focus {
+  animation: pulse-anim 1s ease infinite alternate;
+  background-image: linear-gradient(180deg, #eaf6fd 45%, #bee6fd 0, #a7d9f5);
+  border-color: #5586a3;
+}
+
+menu[role="tablist"] {
+  overflow-x: auto;
+}
+
+menu[role="tablist"] .button {
+  white-space: nowrap;
+  border-radius: 0;
+  color: #222;
+  display: block;
+  min-width: unset;
+  padding: 2px 6px;
+  text-decoration: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+
+menu[role="tablist"] .button[aria-selected="true"] {
+  background: #fff;
+  border-bottom: 0;
+  box-shadow: none;
+  margin: -2px 0 1px -3px;
+  padding-bottom: 4px;
+  position: relative;
+  z-index: 8;
+}
+
+menu[role="tablist"] .button[aria-selected="true"]:hover {
+  border-color: #888;
+}
+
+menu[role="tablist"] .button[aria-selected="true"]:after,
+menu[role="tablist"] .button[aria-selected="true"]:before {
+  content: none;
+}
+
+dialog {
+  background: transparent;
+  border: none;
+}
+
+/* -------------- */
+
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+main {
+  margin: 0 30px 60px 260px;
+  box-sizing: border-box;
+}
+
+main > article {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 12px 0;
+}
+
+blockquote {
+  margin: 0 0 20px;
+  padding: 20px;
+  background: #dfdfdf;
+}
+
+aside {
+  width: 240px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  padding: 8px;
+  z-index: 99;
+  display: flex;
+  align-items: stretch;
+  box-sizing: border-box;
+}
+
+aside .tree-view {
+  width: 100%;
+  /* TODO: Move scrollbar into the recessed region? */
+  overflow-y: scroll;
+}
+
+#global-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  padding: 8px;
+}
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  aside {
+    display: none;
+  }
+
+  main {
+    width: 100%;
+    margin: 0;
+    padding: 16px;
+  }
+
+  #global-indicator {
+    position: relative;
+    padding: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+}
+
+.inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.htmx-indicator {
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0s 0.5s, opacity 0s linear;
+}
+.htmx-request .htmx-indicator {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s linear;
+}
+.htmx-request.htmx-indicator {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s linear;
+}
+
+[role="button"][aria-disabled="true"],
+button[aria-disabled="true"] {
+  background: #f4f4f4;
+  border-color: #aeb2b5;
+  color: #838383;
+}
+
+.code[open] summary {
+  margin-bottom: 8px;
+}
+.code summary {
+  text-decoration: underline;
+  user-select: none;
+}
+.code button {
+  display: block;
+  margin-left: auto;
+  width: 88px;
+}
+.code pre {
+  overflow-x: auto;
+}
+
+label.error {
+  color: #ef0000;
+}
+
+.trellix {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 8px;
+}
+
+.trellix > #columns {
+  display: flex;
+  gap: 8px;
+}
+
+.trellix .window {
+  min-width: 300px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+}
+
+.trellix .title-bar button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.trellix .title-bar button:hover:before,
+.trellix .title-bar button:active:before,
+.trellix .title-bar button:focus:before,
+.trellix button:not(:disabled).active:after,
+.trellix button:not(:disabled):active:after,
+.trellix button:not(:disabled).active:after,
+.trellix button:not(:disabled):active:after {
+  opacity: 0;
+}
+.trellix .title-bar button:hover,
+.trellix .title-bar button:active,
+.trellix .title-bar button:focus {
+  background: transparent;
+}
+
+.trellix .title-bar input {
+  width: 100%;
+}
+
+.trellix .title-bar.error {
+  background: #ffcccc;
+}
+
+.trellix .window-body {
+  flex: 1;
+}
+.trellix .window-body,
+.trellix .sortable,
+.trellix .sortable ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+.trellix .sortable {
+  margin: 0;
+  padding: 0;
+}
+
+.trellix .sortable li {
+  list-style: none;
+}
+
+.trellix form:has(> .sortable:empty) {
+  margin-top: -8px;
+}
+
+.trellix .sortable .card {
+  cursor: grab;
+}
+
+.trellix .card {
+  background: #dfdfdf;
+  padding: 8px;
+}
+
+.trellix .card.error {
+  background: #ffcccc;
+}
+
+.trellix .card input {
+  margin: -5px 0;
+  width: 100%;
+}

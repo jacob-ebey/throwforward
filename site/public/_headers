@@ -1,0 +1,8 @@
+/android-chrome-192x192.png
+  Cache-Control: public, max-age=3600, s-maxage=3600
+/android-chrome-512x512.png
+  Cache-Control: public, max-age=3600, s-maxage=3600
+/favicon.ico
+  Cache-Control: public, max-age=3600, s-maxage=3600
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

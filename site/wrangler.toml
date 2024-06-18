@@ -1,0 +1,13 @@
+name = "throwforward-stack"
+compatibility_date = "2024-05-28"
+pages_build_output_dir = "./dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "DB"
+database_id = "6bad7f78-cab0-4d6f-be92-5091d0993cd6"
+
+[[durable_objects.bindings]]
+name = "RATE_LIMITER"
+class_name = "RateLimiter"
+script_name = "throwforward-stack-durable-objects"
