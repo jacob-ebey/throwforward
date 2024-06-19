@@ -6,6 +6,7 @@ const serverEntry = "src/worker.ts";
 export default defineConfig({
 	environments: {
 		client: {},
+		ssr: {},
 	},
 	plugins: [
 		throwforward({

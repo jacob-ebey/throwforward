@@ -12,6 +12,7 @@ export default defineConfig({
 				},
 			},
 		},
+		ssr: {},
 	},
 	plugins: [
 		pages({ environment: "ssr", entry: serverEntry }),
