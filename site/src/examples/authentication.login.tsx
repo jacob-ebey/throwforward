@@ -4,7 +4,6 @@ import { drizzle } from "drizzle-orm/d1";
 import { Hono } from "hono";
 import { setSignedCookie } from "hono/cookie";
 import { ZodError, z } from "zod";
-import { zfd } from "zod-form-data";
 
 import { CodePreview } from "../components/code-preview.js";
 import type { Env } from "../env.js";
@@ -20,8 +19,8 @@ import * as schema from "./authentication.schema.js";
 
 const loginSchema = z.object({
 	intent: z.literal("login"),
-	email: zfd.text(z.string().trim().email()),
-	password: zfd.text(z.string().min(1)),
+	email: z.string().trim().email(),
+	password: z.string().min(1),
 });
 
 export const app = new Hono<{

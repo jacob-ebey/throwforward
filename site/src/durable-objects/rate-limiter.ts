@@ -16,15 +16,16 @@ const app = new Hono<{
 	async (c) => {
 		const { msForGracePeriod, msPerRequest } = c.req.valid("query");
 
-		let nextAllowedTime =
-			(await c.env.state.storage.get<number>("nextAllowedTime")) ?? 0;
-		const now = Date.now();
+		const value = await c.env.state.blockConcurrencyWhile(async () => {
+			let nextAllowedTime =
+				(await c.env.state.storage.get<number>("nextAllowedTime")) ?? 0;
+			const now = Date.now();
 
-		nextAllowedTime = Math.max(now, nextAllowedTime);
-		nextAllowedTime += msPerRequest;
-		c.env.state.storage.put("nextAllowedTime", nextAllowedTime);
-
-		const value = Math.max(0, nextAllowedTime - now - msForGracePeriod);
+			nextAllowedTime = Math.max(now, nextAllowedTime);
+			nextAllowedTime += msPerRequest;
+			await c.env.state.storage.put("nextAllowedTime", nextAllowedTime);
+			return Math.max(0, nextAllowedTime - now - msForGracePeriod);
+		});
 
 		return c.json(value);
 	},

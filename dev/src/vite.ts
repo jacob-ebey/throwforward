@@ -75,6 +75,18 @@ export default function throwforward({
 								manifest: true,
 							},
 						},
+						...Object.fromEntries(
+							environments.map((env) => [
+								env,
+								{
+									resolve: {
+										mainFields: ["module"],
+										conditions: ["workerd", "module"],
+										noExternal: true,
+									},
+								},
+							]),
+						),
 					},
 				};
 			},
@@ -227,6 +239,56 @@ export default function throwforward({
 
 					return `export default "${this.environment.config.base}${manifestFile}";`;
 				}
+			},
+		},
+	];
+}
+
+export type PagesOptions = {
+	/**
+	 * The environments to apply this plugin to.
+	 */
+	environment: string;
+	/**
+	 * The worker entry.
+	 */
+	entry: string;
+	/**
+	 * The output directory ready for pages deployment.
+	 */
+	outDir?: string;
+};
+
+export function pages({
+	environment,
+	entry,
+	outDir = "dist",
+}: PagesOptions): PluginOption {
+	return [
+		{
+			name: "throw-forward-pages",
+			config() {
+				return {
+					environments: {
+						client: {
+							build: {
+								outDir,
+							},
+						},
+						[environment]: {
+							webCompatible: true,
+							build: {
+								outDir,
+								emptyOutDir: false,
+								copyPublicDir: false,
+								assetsDir: "_server-assets",
+								rollupOptions: {
+									input: { _worker: entry },
+								},
+							},
+						},
+					},
+				};
 			},
 		},
 	];

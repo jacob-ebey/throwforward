@@ -1,6 +1,6 @@
 name = "throwforward-stack-durable-objects"
 compatibility_date = "2024-05-28"
-main = "./dist/_worker.js"
+main = "./dist/durable-objects.js"
 
 [[durable_objects.bindings]]
 name = "RATE_LIMITER"
