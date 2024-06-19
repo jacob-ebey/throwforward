@@ -17,7 +17,7 @@ npx degit jacob-ebey/throwforward/starters/htmx
 
 ## React
 
-The React starter template is a bare-botes [Remix](https://remix.run) application.
+The React starter template is a bare-bones [Remix](https://remix.run) application.
 
 ```sh
 npx degit jacob-ebey/throwforward/starters/remix
