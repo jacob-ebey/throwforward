@@ -246,13 +246,13 @@ export default function throwforward({
 
 export type PagesOptions = {
 	/**
-	 * The environments to apply this plugin to.
-	 */
-	environment: string;
-	/**
 	 * The worker entry.
 	 */
 	entry: string;
+	/**
+	 * The environments to apply this plugin to.
+	 */
+	environment?: string;
 	/**
 	 * The output directory ready for pages deployment.
 	 */
@@ -260,8 +260,8 @@ export type PagesOptions = {
 };
 
 export function pages({
-	environment,
 	entry,
+	environment = "ssr",
 	outDir = "dist",
 }: PagesOptions): PluginOption {
 	return [

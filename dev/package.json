@@ -1,6 +1,6 @@
 {
 	"name": "throwforward-dev",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"type": "module",
 	"description": "The throwforward development tools.",
 	"keywords": [

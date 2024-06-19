@@ -70,42 +70,53 @@ app.use(
 							</li>
 							<li>
 								<details open>
-									<summary>Middleware</summary>
+									<summary>Tools</summary>
 									<ul>
 										<li>
-											<a href="/middleware/authentication">Authentication</a>
-										</li>
-									</ul>
-								</details>
-							</li>
-							<li>
-								<details open>
-									<summary>DurableObjects</summary>
-									<ul>
-										<li>
-											<a href="/durable-object/client">Hono Client</a>
-										</li>
-										<li>
-											<a href="/durable-object/rate-limiter">Rate Limiter</a>
-										</li>
-									</ul>
-								</details>
-							</li>
-							<li>
-								<details open>
-									<summary>HTMX Extensions</summary>
-									<ul>
-										<li>
-											<a href="/htmx/aria-disabled">Aria Disabled</a>
+											<details open>
+												<summary>Middleware</summary>
+												<ul>
+													<li>
+														<a href="/middleware/authentication">
+															Authentication
+														</a>
+													</li>
+												</ul>
+											</details>
 										</li>
 										<li>
-											<a href="/htmx/markdown">Markdown</a>
+											<details open>
+												<summary>DurableObjects</summary>
+												<ul>
+													<li>
+														<a href="/durable-object/client">Hono Client</a>
+													</li>
+													<li>
+														<a href="/durable-object/rate-limiter">
+															Rate Limiter
+														</a>
+													</li>
+												</ul>
+											</details>
 										</li>
 										<li>
-											<a href="/htmx/sortable">Sortable</a>
-										</li>
-										<li>
-											<a href="/htmx/helpers">Extension Helpers</a>
+											<details open>
+												<summary>HTMX Extensions</summary>
+												<ul>
+													<li>
+														<a href="/htmx/aria-disabled">Aria Disabled</a>
+													</li>
+													<li>
+														<a href="/htmx/markdown">Markdown</a>
+													</li>
+													<li>
+														<a href="/htmx/sortable">Sortable</a>
+													</li>
+													<li>
+														<a href="/htmx/helpers">Extension Helpers</a>
+													</li>
+												</ul>
+											</details>
 										</li>
 									</ul>
 								</details>

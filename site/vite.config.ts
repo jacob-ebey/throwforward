@@ -44,7 +44,7 @@ export default defineConfig(({ command }) => ({
 		concat({
 			input: [browserEntry],
 		}),
-		pages({ environment: "ssr", entry: serverEntry, outDir: "dist/pages" }),
+		pages({ entry: serverEntry, outDir: "dist/pages" }),
 		throwforward({
 			environments: ["ssr", "durable_objects"],
 			serverEntry,
