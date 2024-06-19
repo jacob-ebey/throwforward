@@ -17,9 +17,9 @@ const app = new Hono<{
 		const { msForGracePeriod, msPerRequest } = c.req.valid("query");
 
 		const value = await c.env.state.blockConcurrencyWhile(async () => {
-			let nextAllowedTime =
-				(await c.env.state.storage.get<number>("nextAllowedTime")) ?? 0;
 			const now = Date.now();
+			let nextAllowedTime =
+				(await c.env.state.storage.get<number>("nextAllowedTime")) ?? now;
 
 			nextAllowedTime = Math.max(now, nextAllowedTime);
 			nextAllowedTime += msPerRequest;

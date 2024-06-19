@@ -105,9 +105,10 @@ app.get(
 
 			const next = await rateLimiter.next
 				.$get({
-					query: { msForGracePeriod: "5000", msPerRequest: "5000" },
+					query: { msForGracePeriod: "1500", msPerRequest: "1000" },
 				})
 				.then((res) => res.json());
+			console.log({ next });
 
 			if (typeof next !== "number" || next > 0) {
 				const retryId = nextMessageId();
@@ -146,11 +147,15 @@ app.get(
                           msg.textContent = "Rate limit exceeded.";
                           btn.disabled = false;
                           btn.addEventListener("click", () => {
-                            document.getElementById("user-"+ "${id}").id = "user-${retryId}";
+														const user = document.getElementById("user-"+ "${id}");
+                            user.id = "user-${retryId}";
                             err.id = "${retryId}";
                             document.getElementById("chat-form-id").value = "${retryId}";
+														const messages = document.getElementById("messages");
+														messages.appendChild(user.parentElement);
+														messages.appendChild(err);
                           }, { once: true });
-                        }, ${next});
+                        }, ${next} + 1000);
                       })();
                     `,
 									}}
@@ -302,7 +307,7 @@ app.get("/llm", (c) => {
                     }
                     lastSentId = id;
                     if (typeof elt.getAttribute("no-create") === "string") {
-                    return;
+                    	return;
                     }
                     const message = elt.elements.message.value;
                     elt.reset();
