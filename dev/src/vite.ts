@@ -8,8 +8,8 @@ import type {
 	WorkerdDevEnvironment,
 } from "@jacob-ebey/cf-vite-plugin";
 import cloudflare from "@jacob-ebey/cf-vite-plugin";
+import type { VitePluginConfig } from "@remix-run/dev";
 import type { PluginOption, Rollup } from "vite";
-import { defineConfig } from "vite";
 import ws from "ws";
 
 declare global {
@@ -283,12 +283,12 @@ export function pages({
 						[environment]: {
 							webCompatible: true,
 							build: {
-								outDir,
+								outDir: `${outDir}/worker.js`,
 								emptyOutDir: false,
 								copyPublicDir: false,
 								assetsDir: "_server-assets",
 								rollupOptions: {
-									input: { _worker: entry },
+									input: { index: entry },
 								},
 							},
 						},
@@ -301,13 +301,21 @@ export function pages({
 
 export type ReactRouterOptions = {
 	/**
+	 * The Remix plugin configuration.
+	 */
+	config?: VitePluginConfig;
+	/**
 	 * The worker entry.
 	 */
 	serverEntry: string;
 };
 
-export function reactRouter({ serverEntry }: ReactRouterOptions): PluginOption {
+export function reactRouter({
+	config,
+	serverEntry,
+}: ReactRouterOptions): PluginOption {
 	return [
+		import("@remix-run/dev").then(({ vitePlugin: remix }) => remix(config)),
 		{
 			name: "override-remix",
 			config(_, { isSsrBuild }) {

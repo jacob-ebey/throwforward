@@ -6,6 +6,12 @@ export default [
 		format: ["esm"],
 		platform: "node",
 		dts: true,
-		external: ["@hono/node-server", "@jacob-ebey/cf-vite-plugin", "vite", "ws"],
+		external: [
+			"@hono/node-server",
+			"@jacob-ebey/cf-vite-plugin",
+			"@remix-run/dev",
+			"vite",
+			"ws",
+		],
 	}),
 ];
