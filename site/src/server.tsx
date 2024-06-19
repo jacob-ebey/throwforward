@@ -75,6 +75,9 @@ app.use(
 										<li>
 											<a href="/docs/manual-setup">Manual Setup</a>
 										</li>
+										<li>
+											<a href="/docs/starters">Starters</a>
+										</li>
 									</ul>
 								</details>
 							</li>

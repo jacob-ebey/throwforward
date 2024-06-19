@@ -79,10 +79,15 @@ export default function throwforward({
 							environments.map((env) => [
 								env,
 								{
+									webCompatible: true,
 									resolve: {
 										mainFields: ["module"],
 										conditions: ["workerd", "module"],
+										externalConditions: ["workerd", "module"],
 										noExternal: true,
+										alias: {
+											module: "throwforward-dev/module.mock",
+										},
 									},
 								},
 							]),
@@ -289,6 +294,53 @@ export function pages({
 						},
 					},
 				};
+			},
+		},
+	];
+}
+
+export type ReactRouterOptions = {
+	/**
+	 * The worker entry.
+	 */
+	serverEntry: string;
+};
+
+export function reactRouter({ serverEntry }: ReactRouterOptions): PluginOption {
+	return [
+		{
+			name: "override-remix",
+			config(_, { isSsrBuild }) {
+				const dev = {
+					optimizeDeps: {
+						// All the CJS dependencies used by remix
+						include: [
+							"@remix-run/cloudflare",
+							"@remix-run/server-runtime",
+							"cookie",
+							"set-cookie-parser",
+							"react",
+							"react/jsx-runtime",
+							"react/jsx-dev-runtime",
+							"react-dom/server",
+							"react-dom",
+						],
+					},
+				};
+
+				if (isSsrBuild) {
+					return {
+						dev,
+						build: {
+							rollupOptions: {
+								input: {
+									_worker: serverEntry,
+								},
+							},
+						},
+					};
+				}
+				return { dev };
 			},
 		},
 	];

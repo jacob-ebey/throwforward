@@ -9,6 +9,8 @@ description: A guide to setting up a new project from scratch.
 
 The Throwforward Vite plugin is a powerful tool for building and deploying modern web applications on the Cloudflare platform. This documentation provides an overview of how to use the Throwforward Vite plugin in your Vite configuration.
 
+You don't have to go through this guide, there are starter templates available. Find out more at [/docs/starter-templates](/docs/starters).
+
 ## `throwforward-dev/vite`
 
 ```ts

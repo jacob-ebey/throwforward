@@ -1,0 +1,20 @@
+{
+	"include": ["vite.config.ts", "src/**/*"],
+	"compilerOptions": {
+		"target": "ES2022",
+		"module": "Node16",
+		"moduleResolution": "Node16",
+		"lib": ["DOM", "DOM.Iterable", "ES2022"],
+		"types": [
+			"@cloudflare/workers-types",
+			"node",
+			"throwforward-dev/vite-types",
+			"vite/client"
+		],
+		"jsx": "react-jsx",
+		"strict": true,
+		"isolatedModules": true,
+		"skipLibCheck": true,
+		"noEmit": true
+	}
+}

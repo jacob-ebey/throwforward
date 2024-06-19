@@ -8,5 +8,10 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.8.1"
+	},
+	"pnpm": {
+		"overrides": {
+			"vite": "6.0.0-alpha.18"
+		}
 	}
 }
