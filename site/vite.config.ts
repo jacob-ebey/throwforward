@@ -3,10 +3,10 @@ import concat from "@vituum/vite-plugin-concat";
 import throwforward, { pages } from "throwforward-dev/vite";
 import { defineConfig } from "vite";
 
-const durableObjectsEntry = "/src/durable-objects.ts";
-const serverEntry = "/src/server.tsx";
-const wranglerConfig = "./wrangler.dev.toml";
-const browserEntry = "/src/browser.ts";
+const browserEntry = "src/browser.ts";
+const serverEntry = "src/server.tsx";
+const durableObjectsEntry = "src/durable-objects.ts";
+const wranglerConfig = "wrangler.dev.toml";
 
 export default defineConfig(({ command }) => ({
 	css: {
