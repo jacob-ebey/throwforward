@@ -43,14 +43,6 @@ app.get("/docs/:slug", async (c, next) => {
 	const slug = c.req.param("slug");
 	const response = await fetch(
 		`https://github-md.com/jacob-ebey/throwforward/main/docs/${slug}.md`,
-		{
-			cf: {
-				cacheTtlByStatus: {
-					"200": 1,
-				},
-				cacheKey: `docs-${slug}`,
-			},
-		},
 	);
 	const json = (await response.json()) as {
 		attributes: Record<string, string>;
