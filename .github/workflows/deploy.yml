@@ -30,6 +30,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 574fdb1eae7e80782a805c4b92f6b626
           wranglerVersion: "3.61.0"
+          packageManager: pnpm
           workingDirectory: site
           command: deploy --config wrangler.do.toml dist/durable-objects.js
 
@@ -39,6 +40,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 574fdb1eae7e80782a805c4b92f6b626
           wranglerVersion: "3.61.0"
+          packageManager: pnpm
           workingDirectory: site
           command: pages deploy dist/pages
         env:
