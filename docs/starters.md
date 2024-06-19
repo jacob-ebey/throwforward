@@ -5,6 +5,8 @@ description: Starter templates to help you get started with Throwforward.
 
 # Starters
 
+---
+
 The Throwforward Vite plugin enables integration with endless tools and workflows. Here are a few starter templates to help you get going with Throwforward.
 
 ## Hono + HTMX
