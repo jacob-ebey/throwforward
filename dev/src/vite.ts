@@ -283,7 +283,7 @@ export function pages({
 						[environment]: {
 							webCompatible: true,
 							build: {
-								outDir: `${outDir}/worker.js`,
+								outDir: `${outDir}/_worker.js`,
 								emptyOutDir: false,
 								copyPublicDir: false,
 								assetsDir: "_server-assets",
