@@ -1,5 +1,3 @@
-import { getInternalData, querySelectorAllExt } from "./helpers.js";
-
 htmx.defineExtension("aria-disabled", {
 	// TODO: These types shouldn't be needed once HTMX publishes dist/htmx.d.ts
 	// https://github.com/bigskysoftware/htmx/issues/2629

@@ -1,8 +1,6 @@
 // @ts-expect-error - no types
 import Markdown from "md2dom"; // v24.2.9
 
-import { querySelectorAllExt } from "./helpers.js";
-
 const markdown = new Markdown();
 
 htmx.onLoad(async (content: Element) => {

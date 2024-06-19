@@ -1,11 +1,11 @@
 import "./browser-globals.ts";
-import "htmx-ext-response-targets";
-import "htmx-ext-ws";
+import "../node_modules/htmx-ext-response-targets/response-targets.js";
+import "../node_modules/htmx-ext-ws/ws.js";
+
+import "./extensions/helpers.ts";
 import "./extensions/aria-disabled.ts";
 import "./extensions/markdown.ts";
 import "./extensions/sortable.ts";
-
-import { querySelectorAllExt } from "./extensions/helpers.js";
 
 document.body.addEventListener("htmx:beforeSwap", (e) => {
 	const event = e as CustomEvent;
