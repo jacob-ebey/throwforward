@@ -11,6 +11,8 @@ The Throwforward Vite plugin enables integration with endless tools and workflow
 
 The HTMX starter template is a very minimalistic setup that uses [enhance-ssr](https://github.com/enhance-dev/enhance-ssr) for server-side rendering. It also enables client side routing with `hx-boost`.
 
+[https://github.com/jacob-ebey/throwforward/tree/main/starters/htmx](https://github.com/jacob-ebey/throwforward/tree/main/starters/htmx)
+
 ```sh
 mkdir my-app
 cd my-app
@@ -20,6 +22,8 @@ npx degit jacob-ebey/throwforward/starters/htmx
 ## React
 
 The React starter template is a bare-bones [Remix](https://remix.run) application.
+
+[https://github.com/jacob-ebey/throwforward/tree/main/starters/remix](https://github.com/jacob-ebey/throwforward/tree/main/starters/remix)
 
 ```sh
 mkdir my-app
