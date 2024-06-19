@@ -1,11 +1,12 @@
-// @ts-expect-error - no types
-import Markdown from "md2dom"; // v24.2.9
-
-const markdown = new Markdown();
-
 htmx.onLoad(async (content: Element) => {
 	const markdownTargets = content.querySelectorAll("[data-markdown]");
 
+	let markdown: any;
+	if (markdownTargets.length > 0) {
+		// @ts-expect-error - no types
+		const { default: Markdown } = await import("md2dom");
+		markdown = new Markdown();
+	}
 	for (const target of markdownTargets) {
 		const sourceSelector = target.getAttribute("data-markdown");
 		if (!sourceSelector) continue;
