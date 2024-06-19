@@ -105,7 +105,7 @@ app.get(
 
 			const next = await rateLimiter.next
 				.$get({
-					query: { msForGracePeriod: "5000", msPerRequest: "1000" },
+					query: { msForGracePeriod: "5000", msPerRequest: "5000" },
 				})
 				.then((res) => res.json());
 
