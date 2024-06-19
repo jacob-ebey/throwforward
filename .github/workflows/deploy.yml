@@ -41,6 +41,6 @@ jobs:
           accountId: 574fdb1eae7e80782a805c4b92f6b626
           projectName: throwforward-stack
           workingDirectory: site
-          directory: dist
+          directory: dist/pages
           wranglerVersion: "3.61.0"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
