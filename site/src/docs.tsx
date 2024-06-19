@@ -46,8 +46,9 @@ app.get("/docs/:slug", async (c, next) => {
 		{
 			cf: {
 				cacheTtlByStatus: {
-					"200": 5,
+					"200": 1,
 				},
+				cacheKey: `docs-${slug}`,
 			},
 		},
 	);
