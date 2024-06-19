@@ -14,7 +14,6 @@ htmx.onLoad(async (content: Element) => {
 		if (!source) continue;
 
 		const observer = new MutationObserver(() => {
-			console.log("Markdown updated");
 			target.replaceChildren(
 				...markdown.parse((source as HTMLElement).textContent),
 			);
