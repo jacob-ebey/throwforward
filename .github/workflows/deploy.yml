@@ -43,4 +43,5 @@ jobs:
           workingDirectory: site
           directory: dist/pages
           wranglerVersion: "3.61.0"
+          packageManager: pnpm
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
