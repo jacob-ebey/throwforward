@@ -34,14 +34,13 @@ jobs:
           workingDirectory: site
           command: deploy --config wrangler.do.toml dist/durable-objects.js
 
-      - name: Deploy Pages Site
-        uses: cloudflare/wrangler-action@v3
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 574fdb1eae7e80782a805c4b92f6b626
-          wranglerVersion: "3.61.0"
-          packageManager: pnpm
+          projectName: throwforward-stack
           workingDirectory: site
-          command: pages deploy --commit-dirty=true dist/pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          directory: dist
+          wranglerVersion: "3.61.0"
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
