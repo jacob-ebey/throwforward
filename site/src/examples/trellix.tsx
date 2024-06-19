@@ -5,7 +5,10 @@ import { z } from "zod";
 import { CodePreview } from "../components/code-preview.js";
 import type { Env } from "../env.js";
 import type { AuthVariables } from "../middleware/authentication.js";
-import { authenticationMiddleware } from "../middleware/authentication.js";
+import {
+	authenticationMiddleware,
+	requireAuthentication,
+} from "../middleware/authentication.js";
 
 import actionsSource from "./trellix.actions.js?raw";
 import componentsSource from "./trellix.components.js?raw";
@@ -17,10 +20,12 @@ import * as actions from "./trellix.actions.js";
 import { BoardLayout, BoardTab, Card, Column } from "./trellix.components.js";
 import * as model from "./trellix.model.js";
 
-export const app = new Hono<{
+type HonoEnv = {
 	Bindings: Env;
 	Variables: AuthVariables;
-}>().use(authenticationMiddleware);
+};
+
+export const app = new Hono<HonoEnv>().use(authenticationMiddleware);
 
 app.route("", actions.app);
 
@@ -28,12 +33,14 @@ app.on(
 	["GET"],
 	["/trellix", "/trellix/:boardId"],
 	zValidator("param", z.object({ boardId: z.coerce.number().optional() })),
-	async (c, next) => {
-		const userId = c.get("userId");
-		if (!userId) {
+	requireAuthentication({
+		redirect: (c) => {
 			const url = new URL(c.req.url);
-			return c.redirect(`/authentication?redirect=${url.pathname}`);
-		}
+			return `/authentication?redirect=${url.pathname}`;
+		},
+	}) as any,
+	async (c) => {
+		const userId = c.get("userId");
 
 		const boardsPromise = model.getBoards(c, Number(userId));
 

@@ -22,20 +22,20 @@ export const authenticationMiddleware = createMiddleware<{
 	return next();
 });
 
-export const requireAuthentication = <E extends Env>({
+export const requireAuthentication = <HonoEnv>({
 	redirect,
-}: { redirect: string | ((c: Context<E>) => string) }) =>
-	createMiddleware<{
-		Bindings: E["Bindings"];
-		Variables: E["Variables"] & {
-			userId: string;
-		};
-	}>(async (c, next) => {
+}: { redirect: string | ((c: Context) => string) }) =>
+	createMiddleware<
+		HonoEnv & {
+			Bindings: any;
+			Variables: {
+				userId: string;
+			};
+		}
+	>(async (c, next) => {
 		if (!c.get("userId")) {
 			return c.redirect(
-				typeof redirect === "function"
-					? redirect(c as unknown as Context<E>)
-					: redirect,
+				typeof redirect === "function" ? redirect(c) : redirect,
 			);
 		}
 		return next();
