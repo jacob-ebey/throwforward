@@ -2,7 +2,7 @@ name: Deploy Workflow
 on: [push]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
@@ -10,22 +10,36 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 9
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "pnpm"
+
       - name: Install dependencies
         run: pnpm install
+
       - name: Build
         run: pnpm build
-      - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+
+      - name: Deploy Durable Objects
+        uses: cloudflare/wrangler-action@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 574fdb1eae7e80782a805c4b92f6b626
-          projectName: throwforward-stack
+          wranglerVersion: "3.61.0"
           workingDirectory: site
-          directory: dist
-          wranglerVersion: "3.60.3"
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: deploy --config wrangler.do.toml dist/durable-objects.js
+
+      - name: Deploy Pages Site
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 574fdb1eae7e80782a805c4b92f6b626
+          wranglerVersion: "3.61.0"
+          workingDirectory: site
+          command: pages deploy dist/pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

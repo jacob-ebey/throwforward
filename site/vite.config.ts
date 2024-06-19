@@ -1,13 +1,12 @@
 // @ts-expect-error - bad types
 import concat from "@vituum/vite-plugin-concat";
-import throwforward from "throwforward-dev/vite";
+import throwforward, { pages } from "throwforward-dev/vite";
 import { defineConfig } from "vite";
 
+const durableObjectsEntry = "/src/durable-objects.ts";
 const serverEntry = "/src/server.tsx";
-const pagesOutDir = "dist";
 const wranglerConfig = "./wrangler.dev.toml";
 const browserEntry = "/src/browser.ts";
-const workerEntry = "/src/_worker.ts";
 
 export default defineConfig(({ command }) => ({
 	css: {
@@ -16,30 +15,12 @@ export default defineConfig(({ command }) => ({
 	environments: {
 		client: {
 			build: {
-				outDir: pagesOutDir,
-				emptyOutDir: false,
 				rollupOptions: {
 					input: [browserEntry, "/src/global.css"],
 				},
 			},
 		},
 		ssr: {
-			nodeCompatible: true,
-			webCompatible: true,
-			resolve: {
-				mainFields: ["module"],
-				conditions: ["workerd", "module"],
-				noExternal: command !== "build" ? true : undefined,
-			},
-			build: {
-				outDir: pagesOutDir,
-				emptyOutDir: false,
-				copyPublicDir: false,
-				assetsDir: "_server-assets",
-				rollupOptions: {
-					input: workerEntry,
-				},
-			},
 			dev: {
 				optimizeDeps: {
 					include: [
@@ -49,18 +30,28 @@ export default defineConfig(({ command }) => ({
 				},
 			},
 		},
+		durable_objects: {
+			build: {
+				emptyOutDir: false,
+				copyPublicDir: false,
+				rollupOptions: {
+					input: durableObjectsEntry,
+				},
+			},
+		},
 	},
 	plugins: [
 		concat({
 			input: [browserEntry],
 		}),
+		pages({ environment: "ssr", entry: serverEntry, outDir: "dist/pages" }),
 		throwforward({
-			environments: ["ssr"],
+			environments: ["ssr", "durable_objects"],
 			serverEntry,
 			wranglerConfig,
 			durableObjects: {
 				RATE_LIMITER: {
-					environment: "ssr",
+					environment: "durable_objects",
 					file: "/src/durable-objects/rate-limiter.ts",
 				},
 			},

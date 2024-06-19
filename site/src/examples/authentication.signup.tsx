@@ -4,7 +4,6 @@ import { drizzle } from "drizzle-orm/d1";
 import { Hono } from "hono";
 import { setSignedCookie } from "hono/cookie";
 import { ZodError, z } from "zod";
-import { zfd } from "zod-form-data";
 
 import { CodePreview } from "../components/code-preview.js";
 import type { Env } from "../env.js";
@@ -20,10 +19,10 @@ import * as schema from "./authentication.schema.js";
 
 const signupSchema = z.object({
 	intent: z.literal("signup"),
-	name: zfd.text(z.string().trim().min(1)),
-	email: zfd.text(z.string().trim().email()),
-	password: zfd.text(z.string().min(8)),
-	verifyPassword: zfd.text(z.string().min(8)),
+	name: z.string().trim().min(1),
+	email: z.string().trim().email(),
+	password: z.string().min(8),
+	verifyPassword: z.string().min(8),
 });
 
 export const app = new Hono<{
@@ -155,6 +154,7 @@ export const app = new Hono<{
 						method="post"
 						hx-indicator="closest form"
 						hx-aria-disabled="find button[type=submit]"
+						id="signup-form"
 					>
 						<input type="hidden" name="intent" value="signup" />
 
