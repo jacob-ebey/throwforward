@@ -15,6 +15,14 @@ The Hono + HTMX starter template is a minimalistic setup that uses [Hono](https:
 
 [https://github.com/jacob-ebey/throwforward/tree/main/starters/hono](https://github.com/jacob-ebey/throwforward/tree/main/starters/hono)
 
+```sh
+mkdir my-app
+cd my-app
+npx degit jacob-ebey/throwforward/starters/hono
+npm i
+npm run dev
+```
+
 ## React
 
 The React starter template is a bare-bones [Remix](https://remix.run) application.
@@ -25,6 +33,8 @@ The React starter template is a bare-bones [Remix](https://remix.run) applicatio
 mkdir my-app
 cd my-app
 npx degit jacob-ebey/throwforward/starters/remix
+npm i
+npm run dev
 ```
 
 ## Enhance SSR + HTMX
@@ -37,4 +47,6 @@ The HTMX starter template is a very minimalistic setup that uses [enhance-ssr](h
 mkdir my-app
 cd my-app
 npx degit jacob-ebey/throwforward/starters/htmx
+npm i
+npm run dev
 ```
