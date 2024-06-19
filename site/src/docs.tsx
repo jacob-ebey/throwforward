@@ -39,6 +39,29 @@ app.get("/", async (c) => {
 	);
 });
 
+app.get("/docs/:slug", async (c, next) => {
+	const slug = c.req.param("slug");
+	const response = await fetch(
+		`https://github-md.com/jacob-ebey/throwforward/main/docs/${slug}.md`,
+		{
+			cf: {
+				cacheTtlByStatus: {
+					"200": 5,
+				},
+			},
+		},
+	);
+	const json = (await response.json()) as {
+		attributes: Record<string, string>;
+		html: string;
+	};
+	if (response.status !== 200 || !json || !json.attributes || !json.html) {
+		return next();
+	}
+
+	return c.render(<article dangerouslySetInnerHTML={{ __html: json.html }} />);
+});
+
 app.get("/durable-object/:name", async (c, next) => {
 	const name = c.req.param("name");
 

@@ -70,6 +70,16 @@ app.use(
 							</li>
 							<li>
 								<details open>
+									<summary>Docs</summary>
+									<ul>
+										<li>
+											<a href="/docs/manual-setup">Manual Setup</a>
+										</li>
+									</ul>
+								</details>
+							</li>
+							<li>
+								<details open>
 									<summary>Tools</summary>
 									<ul>
 										<li>

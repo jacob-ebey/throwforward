@@ -289,6 +289,11 @@ button[aria-disabled="true"] {
   overflow-x: auto;
 }
 
+pre code.hljs {
+  background: #ffffff;
+  padding: 0;
+}
+
 label.error {
   color: #ef0000;
 }
