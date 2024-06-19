@@ -315,7 +315,20 @@ export function reactRouter({
 	serverEntry,
 }: ReactRouterOptions): PluginOption {
 	return [
-		import("@remix-run/dev").then(({ vitePlugin: remix }) => remix(config)),
+		import("@remix-run/dev").then(({ vitePlugin: remix }) =>
+			remix({
+				...config,
+				buildEnd: async (args) => {
+					const buildDir = args.remixConfig.buildDirectory;
+					await fsp.rename(
+						path.join(buildDir, "server"),
+						path.join(buildDir, "client/_worker.js"),
+					);
+
+					return config?.buildEnd?.(args);
+				},
+			}),
+		),
 		{
 			name: "override-remix",
 			config(_, { isSsrBuild }) {
