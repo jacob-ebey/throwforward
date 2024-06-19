@@ -12,6 +12,7 @@
 			"vite/client"
 		],
 		"jsx": "react-jsx",
+		"jsxImportSource": "hono/jsx",
 		"strict": true,
 		"isolatedModules": true,
 		"skipLibCheck": true,

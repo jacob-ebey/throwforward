@@ -22,7 +22,6 @@ function Shell(children: string) {
 				<script type="module" src="${browserEntry}"></script>
       </head>
       <body
-				hx-ext="aria-disabled"
 				hx-boost="true"
 				hx-swap="innerHTML"
 				hx-target-404="body"

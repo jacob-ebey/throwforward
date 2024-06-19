@@ -1,0 +1,19 @@
+{
+	"include": ["vite.config.ts", "src/**/*"],
+	"compilerOptions": {
+		"target": "ES2022",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"lib": ["DOM", "DOM.Iterable", "ES2022"],
+		"types": [
+			"@cloudflare/workers-types",
+			"node",
+			"throwforward-dev/vite-types",
+			"vite/client"
+		],
+		"strict": true,
+		"isolatedModules": true,
+		"skipLibCheck": true,
+		"noEmit": true
+	}
+}
